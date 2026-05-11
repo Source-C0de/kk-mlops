@@ -1,0 +1,14 @@
+
+
+//command for generate virtual environment
+python3 -m venv environemnt_name
+
+//activate environemnt
+source environemnt_name/bin/activate
+
+
+pip install package1 package2 ...
+
+pip freeze requirments.txt 
+
+

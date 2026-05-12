@@ -1,0 +1,57 @@
+. Activate Environment
+source /root/code/ml-env/bin/activate
+2. Verify Config File
+
+Check the file:
+cat /root/code/jupyter_lab_config.py
+
+It MUST contain:
+
+c.ServerApp.token = ''
+c.ServerApp.password = ''
+c.ServerApp.disable_check_xsrf = True
+c.ServerApp.notebook_dir = '/root/notebooks/'
+c.ServerApp.port = 8888
+c.ServerApp.ip = '0.0.0.0'
+
+If not, fix it.
+
+3. Ensure Notebook Directory Exists
+mkdir -p /root/notebooks/
+4. Start JupyterLab Properly
+
+Run exactly:
+
+jupyter lab --config=/root/code/jupyter_lab_config.py --allow-root --no-browser
+
+Do NOT use & first.
+Watch the output carefully.
+
+You should eventually see something similar to:
+
+http://0.0.0.0:8888/lab
+
+If you see an error, that error is the real problem.
+
+5. If It Starts Successfully
+
+Then stop it with:
+
+CTRL + C
+
+Now run in background:
+
+nohup jupyter lab --config=/root/code/jupyter_lab_config.py --allow-root --no-browser > /tmp/jupyter.log 2>&1 &
+6. Verify Port 8888 Is Listening
+ss -tulnp | grep 8888
+
+Expected:
+
+0.0.0.0:8888
+7. If Still 502
+
+Check logs:
+
+cat /tmp/jupyter.log
+
+That will show the exact failure reason.

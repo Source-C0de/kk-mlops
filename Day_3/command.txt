@@ -1,0 +1,20 @@
+The dependency specification was corrected and compiled successfully in /root/code/fraud-detection.
+
+Updated top-level packages in requirements.in:
+
+scikit-learn>=1.5,<1.6
+mlflow>=2.16,<2.17
+pandas>=2.2,<2.3
+numpy>=1.26,<2.0
+
+Then the lockfile was generated with:
+
+uv pip compile requirements.in -o requirements.txt
+
+The resulting requirements.txt now contains:
+
+exact pinned versions (==) for all four top-level packages
+all resolved transitive dependencies from PyPI
+a fully reproducible dependency lockfile for the ML project
+
+
